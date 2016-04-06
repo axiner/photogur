@@ -21,14 +21,18 @@ class PicturesController < ApplicationController
       end
     end
 
-    private
-    def pictures_params
-      params.require(:picture).permit(:artist, :title, :url)
-    end
-
     def destroy
       @picture = Picture.find(params[:id])
       @picture.destroy
       redirect_to pictures_url
+    end
+
+    def edit
+      @picture = Picture.find(params[:id])
+    end
+
+    private
+    def pictures_params
+      params.require(:picture).permit(:artist, :title, :url)
     end
 end
